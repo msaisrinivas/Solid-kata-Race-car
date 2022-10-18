@@ -7,9 +7,9 @@ public class TelemetryDiagnosticControls
     private final TelemetryClient telemetryClient;
     private String diagnosticInfo = "";
 
-        public TelemetryDiagnosticControls()
+        public TelemetryDiagnosticControls(TelemetryClient telemetryClient)
         {
-            telemetryClient = new TelemetryClient();
+            this.telemetryClient = telemetryClient;
         }
         
         public String getDiagnosticInfo(){
@@ -38,7 +38,7 @@ public class TelemetryDiagnosticControls
                 throw new Exception("Unable to connect.");
             }
     
-            telemetryClient.send(TelemetryClient.DIAGNOSTIC_MESSAGE);
+            telemetryClient.send(TelemetryClientImpl.DIAGNOSTIC_MESSAGE);
             diagnosticInfo = telemetryClient.receive();
     }
 }
